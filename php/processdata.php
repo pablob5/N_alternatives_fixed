@@ -24,7 +24,6 @@ $var16 = $_POST["Correct"];
 $var17 = $_POST["ReactionTime"];
 $var18 = $_POST["Confidence"];
 $var19 = $_POST["ReactionTimeConfidence"];
-$var20 = $_POST["Sound"];
 
 
 $var1 = mysql_real_escape_string($var1);
@@ -46,7 +45,6 @@ $var16 = mysql_real_escape_string($var16);
 $var17 = mysql_real_escape_string($var17);
 $var18 = mysql_real_escape_string($var18);
 $var19 = mysql_real_escape_string($var19);
-$var20 = mysql_real_escape_string($var20);
 
 // To protect MySQL injection
 $var1 = stripslashes($var1);
@@ -68,14 +66,12 @@ $var16 = stripslashes($var16);
 $var17 = stripslashes($var17);
 $var18 = stripslashes($var18);
 $var19 = stripslashes($var19);
-$var20 = stripslashes($var20);
 
 
 $sqll = "INSERT INTO ExpeData (Code,Name,Trial,NumberOfItems,WhichIsBigger,CircleOrSquare,AreaPercValueSecondStim,AreaPercValueThirdStim,PositionBig,Area1,Area2,Area3,Angle,
-															StepAngle,Response,Correct,ReactionTime,Confidence,ReactionTimeConfidence, Sound)
+															StepAngle,Response,Correct,ReactionTime,Confidence,ReactionTimeConfidence)
 				VALUES ('$var1', '$var2', '$var3', '$var4', '$var5', '$var6', '$var7', '$var8', '$var9', '$var10',
-				        '$var11', '$var12', '$var13', '$var14', '$var15', '$var16', '$var17', '$var18', '$var19',
-								'$var20')";
+				        '$var11', '$var12', '$var13', '$var14', '$var15', '$var16', '$var17', '$var18', '$var19')";
 $table= 0;
 while (!$table)
 {$table= mysql_query($sqll);}
