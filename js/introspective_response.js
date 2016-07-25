@@ -4,13 +4,9 @@ var LIMMIN = Math.ceil(screen.width/2) - Math.ceil($('#line1').width()/2) - 10;
 var LIMMAX = Math.ceil(screen.width/2) + Math.ceil($('#line1').width()/2) - 10;
 var range = LIMMAX - LIMMIN;
 
-$("#SoundButton").prop('disabled', true);
-$("#SoundButton").fadeTo(.1, .4);
 
 $('#scale').css('color','#004D00')
-if (sc.trial > 1){
-	$("#scale").animate({ right: '-15px',top: '15px', fontSize: '1em',opacity: '1.0'},10);
-}
+if (sc.trial > 1){$("#scale").animate({ right: '-15px',top: '15px', fontSize: '1em',opacity: '1.0'},10);} // reset the animation from the previous trial
 
 $('#line1').show();
 if (sc.trial<4){$('#preg_segu').show();}
@@ -20,27 +16,25 @@ var StartTime = +new Date();
 var percent = 0;
 
 
-
-
 /*------------------mouse ---------*/
-if (Touchscreen == 'Mouse')
+if (InputMethod == 'Mouse') (Touchscreen == 'Pad')
 {
-		if (AutomaticResponse ==1){setTimeout("$('#Dial').click()",1000)}						// to run alone
-		$(document).mousemove(function(e){ 																					// slides the cursor
+		if (AutomaticResponse ==1){setTimeout("$('#Dial').click()",1000)}	// to run alone
+		$(document).mousemove(function(e){									// slides the cursor
 		$('#scale').show();
 		$('#Dial').show();
 		x = e.pageX;
 		if (e.pageX >= LIMMAX){x = LIMMAX};
 		if (e.pageX <= LIMMIN){x = LIMMIN};
 
-		percen = (100 * (x - LIMMIN)/range).toFixed(0)  														// get percentaje online
+		percen = (100 * (x - LIMMIN)/range).toFixed(0)						// get percentaje 
 		$('#scale').html(percen.toString().concat(' %'))
 		$('#scale').css({"left": x- Math.ceil(screen.width/2)})
 
 		$('#Dial').css({"left": x});})
 
 
-	$(document).click(function(ee){																								// gets the click
+	$(document).click(function(ee){											// gets the click
 		$(document).unbind('mousemove');
 		x = ee.pageX;
 		if (ee.pageX >= LIMMAX){x = LIMMAX};
@@ -86,11 +80,11 @@ if (Touchscreen == 'Mouse')
 }
 
 /*------------------touchscreen ---------*/
-if (Touchscreen == 'Touchscreen')
+if (InputMethod == 'Touchscreen')
 {
-	if (AutomaticResponse ==1){setTimeout("$('#Dial').trigger('touchend')",1000)}						// to run alone
+	if (AutomaticResponse ==1){setTimeout("$('#Dial').trigger('touchend')",1000)}	// to run alone
 	var Xpos = 0
-	$(document).on('touchstart',function (e){																			// gets the touch
+	$(document).on('touchstart',function (e){										// gets the touch
 		e.preventDefault();
 		$('#scale').show();
 		$('#Dial').show();
@@ -100,19 +94,19 @@ if (Touchscreen == 'Touchscreen')
 		$('#Dial').css({"left": Xpos});
 	});
 
-	$(document).on('touchmove',function (e){																				// slides the cursor
+	$(document).on('touchmove',function (e){										// slides the cursor
 		e.preventDefault();
 		Xpos = e.originalEvent.touches[0].pageX;
 		if (e.originalEvent.touches[0].pageX >= LIMMAX){Xpos = LIMMAX};
 		if (e.originalEvent.touches[0].pageX <= LIMMIN){Xpos = LIMMIN};
 
-		percen = (100 * (Xpos - LIMMIN)/range).toFixed(0) 														// get percentaje online
+		percen = (100 * (Xpos - LIMMIN)/range).toFixed(0) 							// get percentaje 
 		$('#scale').html(percen.toString().concat(' %'))
 		$('#scale').css({"left": Xpos- Math.ceil(screen.width/2)})
 		$('#Dial').css({"left": Xpos});
 	})
 
-	$(document).on('touchend',function (e){																				// end of touch, get response
+	$(document).on('touchend',function (e){											// end of touch, get response
 		e.preventDefault();
 		DataToSave.confidence		= (Xpos - LIMMIN)/range;
 		DataToSave.reactiontimeconf	= +new Date() - StartTime;

@@ -62,7 +62,7 @@ function validate_send(){
 	var SCREEN_WIDTH	= screen.width;
 	var SCREEN_HEIGHT 	= screen.height;
 
-	Touchscreen = INPUT_TYPE;
+	InputMethod = INPUT_TYPE;
 
 	var now 	= new Date();
 	timestamp 	= now.getTime();
@@ -70,7 +70,7 @@ function validate_send(){
 	CODE = hex_md5(NAME + GENDER + AGE + timestamp + Math.floor(Math.random()*1000)); //genera un codigo
 	$.ajax({
 	type:'POST',
-	url:'processform.php',
+	url:'./php/processform.php',
 	data:{Code: CODE, Dat: now, Name: NAME, Gender: GENDER, Age: AGE, System: SYSTEM, Mobile: MOBILE, Input_type: INPUT_TYPE, Screen_width: SCREEN_WIDTH, Screen_height: SCREEN_HEIGHT},
 	success:function(r){
 		  if(r=="error")
@@ -108,7 +108,7 @@ setTimeout("$('div.marcassegu').hide(0,newtrial(sc))",2000);
 function store_data(DataToSave){
 $.ajax({
 	type:'POST',
-	url:'processdata.php',
+	url:'./php/processdata.php',
 	data:{Code: 					          DataToSave.code,
 		    Name:  					          DataToSave.name,
  	 	    Trial:  					        DataToSave.trial,
