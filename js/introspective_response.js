@@ -17,10 +17,11 @@ var percent = 0;
 
 
 /*------------------mouse ---------*/
-if (InputMethod == 'Mouse') (Touchscreen == 'Pad')
-{
-		if (AutomaticResponse ==1){setTimeout("$('#Dial').click()",1000)}	// to run alone
-		$(document).mousemove(function(e){									// slides the cursor
+if (InputMethod == 'Mouse') (InputMethod == 'Pad')
+{	
+	$('#scale').hide();
+	if (AutomaticResponse ==1){setTimeout("$('#Dial').click()",1000)}	// to run alone
+	$(document).mousemove(function(e){									// slides the cursor
 		$('#scale').show();
 		$('#Dial').show();
 		x = e.pageX;
@@ -66,7 +67,6 @@ if (InputMethod == 'Mouse') (Touchscreen == 'Pad')
 		var total=0;
 		for(var i in sc.correct) { total += sc.correct[i]; }
 		if (total % 10 ==0 && !(total ==0)){
-			if(SoundOn){LevelSound.play()}
 			Level = Level + 1;
 			$('#Letterhead2').html('Nivel: '+ Level.toString());
 			var sentence = '¡Pasaste al nivel '.concat(Level.toString())
@@ -81,24 +81,24 @@ if (InputMethod == 'Mouse') (Touchscreen == 'Pad')
 
 /*------------------touchscreen ---------*/
 if (InputMethod == 'Touchscreen')
-{
+{	$('#scale').hide();
 	if (AutomaticResponse ==1){setTimeout("$('#Dial').trigger('touchend')",1000)}	// to run alone
 	var Xpos = 0
 	$(document).on('touchstart',function (e){										// gets the touch
 		e.preventDefault();
-		$('#scale').show();
-		$('#Dial').show();
 		Xpos = e.originalEvent.touches[0].pageX;
 		if (e.originalEvent.touches[0].pageX >= LIMMAX){Xpos = LIMMAX};
 		if (e.originalEvent.touches[0].pageX <= LIMMIN){Xpos = LIMMIN};
-		$('#Dial').css({"left": Xpos});
+		percen = (100 * (Xpos - LIMMIN)/range).toFixed(0) 							// get percentaje 
+		$('#scale').html(percen.toString().concat(' %'))
 	});
 
-	$(document).on('touchmove',function (e){										// slides the cursor
-		e.preventDefault();
-		Xpos = e.originalEvent.touches[0].pageX;
-		if (e.originalEvent.touches[0].pageX >= LIMMAX){Xpos = LIMMAX};
-		if (e.originalEvent.touches[0].pageX <= LIMMIN){Xpos = LIMMIN};
+	$(document).on('touchmove',function (ee){										// slides the cursor
+		$('#scale').show();
+		ee.preventDefault();
+		Xpos = ee.originalEvent.touches[0].pageX;
+		if (ee.originalEvent.touches[0].pageX >= LIMMAX){Xpos = LIMMAX};
+		if (ee.originalEvent.touches[0].pageX <= LIMMIN){Xpos = LIMMIN};
 
 		percen = (100 * (Xpos - LIMMIN)/range).toFixed(0) 							// get percentaje 
 		$('#scale').html(percen.toString().concat(' %'))
@@ -106,8 +106,8 @@ if (InputMethod == 'Touchscreen')
 		$('#Dial').css({"left": Xpos});
 	})
 
-	$(document).on('touchend',function (e){											// end of touch, get response
-		e.preventDefault();
+	$(document).on('touchend',function (eee){											// end of touch, get response
+		eee.preventDefault();
 		DataToSave.confidence		= (Xpos - LIMMIN)/range;
 		DataToSave.reactiontimeconf	= +new Date() - StartTime;
 
@@ -136,7 +136,6 @@ if (InputMethod == 'Touchscreen')
 		var total=0;
 		for(var i in sc.correct) { total += sc.correct[i]; }
 		if (total % 10 ==0 && !(total ==0)){
-			if(SoundOn){LevelSound.play()}
 			Level = Level + 1;
 			$('#Letterhead2').html('Nivel: '+ Level.toString());
 			var sentence = '¡Pasaste al nivel '.concat(Level.toString())

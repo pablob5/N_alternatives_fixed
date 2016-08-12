@@ -80,16 +80,18 @@ function create_stim(sc,callback)
 		if (screen.width > 1200){							var AreaSum = 7500}
 
 
+		var trial_stimval	 = sc.stimvalues[sc.trial - 1]
+		var stimval_stim3 	 = sc.tomultiply[sc.trial-1]
+		
+		DataToSave.stimval 	 = trial_stimval
+		DataToSave.stimval_3 = stimval_stim3
 
-		var trial_stimval = sc.stimvalues[sc.trial - 1]
-		DataToSave.stimval = trial_stimval
-		DataToSave.stimval_3 = sc.tomultiply[sc.trial-1]
-
+				//----------------------set areas ----------
 		var area1 = AreaSum + stream1.normal(0,1) * 1000; if (area1 < 500){area1 ==1000}// stimuli areas
-		var area2 = area1 - area1 * trial_stimval;										
+		var area2 = area1 * trial_stimval;	
+		var area3 = area2 * stimval_stim3;
+		//----------------------set areas ----------
 
-		var stimval_stim3 = trial_stimval * sc.tomultiply[sc.trial-1];
-		var area3 = area1 - area1 * stimval_stim3;
 
 		DataToSave.area1 = area1;
 		DataToSave.area2 = area2;
@@ -142,4 +144,5 @@ function create_stim(sc,callback)
 					DataToSave.posbig = 1}
 		else{
 					DataToSave.posbig = 2}  				                        // bigger the square, correct response in context2
+
 }

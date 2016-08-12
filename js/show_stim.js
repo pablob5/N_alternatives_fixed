@@ -1,7 +1,7 @@
 function show_stim(sc)
 {
 
-if (screen.width < 401){						  	var R =  110;}						// responsive diameter
+if (screen.width < 401){						  	var R =  110;}	// responsive diameter
 if ((screen.width > 400) && (screen.width < 601)) { var R =  135;}
 if ((screen.width > 600) && (screen.width < 901)) { var R =  150;}
 if ((screen.width > 900) && (screen.width < 1201)){	var R =  170;}
@@ -70,7 +70,6 @@ if (sc.nstim[sc.trial-1] ==3){var myVar8 = setTimeout("$('#myCanvasR3').fadeIn(2
 
 if (AutomaticResponse ==1){setTimeout("$('#myCanvasR2').click()",2500)}	// to run alone
 
-
 $('.clickresp').click(function(event)									//waits for a click/tap
 {
 	DataToSave.reactiontime 	= +new Date() - StartTime - T1;
@@ -79,23 +78,21 @@ $('.clickresp').click(function(event)									//waits for a click/tap
 	clearTimeout(myVar4);	clearTimeout(myVar5);	clearTimeout(myVar6)
 	clearTimeout(myVar7);	clearTimeout(myVar8)
 
-	if ($(event.target).is('#myCanvasR1')){									//checks which canvas was clicked
-		sc.response[sc.trial-1] = 1;
+	if ($(event.target).is('#myCanvasR1')){ sc.response[sc.trial-1] = 1;	   //checks which canvas was clicked
 		$("#myCanvasR1").fadeOut(50);
 		$("#myCanvasR1").fadeIn(100)
 		$("#myCanvasR1").fadeOut(150);}
-	if ($(event.target).is('#myCanvasR2')){
+	if ($(event.target).is('#myCanvasR2')){ sc.response[sc.trial-1] = 2;
 		$("#myCanvasR2").fadeOut(50);
 		$("#myCanvasR2").fadeIn(100)
 		$("#myCanvasR2").fadeOut(150);}
-	if ($(event.target).is('#myCanvasR3')){
-		sc.response[sc.trial-1] = 3;
+	if ($(event.target).is('#myCanvasR3')){ sc.response[sc.trial-1] = 3;
 		$("#myCanvasR3").fadeOut(50);
 		$("#myCanvasR3").fadeIn(100)
 		$("#myCanvasR3").fadeOut(150);}
 
 	sc.correct[sc.trial-1] = sc.response[sc.trial-1] == DataToSave.posbig;    // checks whether response is correct
-
+	
 	DataToSave.response    = sc.response[sc.trial-1];
 	DataToSave.correct 	   = sc.correct[sc.trial-1];
 

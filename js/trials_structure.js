@@ -2,15 +2,15 @@ function trials_structure(){
 
   TrialStruct = []
 
-  var numberofstimuli     = [2, 3];
-  var areavalues          = [0.05, .1, .2, .3];
-  var bigger              = [1, 2];
-  var areaforthethirdone  = [ 1.2, 1.46, 1.73]
+  var numberofstimuli     = [2, 3];                 // number of items to display each trial
+  var areavalues          = [0.9, .7, .6, .5];      // area difference between figures. area2 = area1 * areavalues[i] 
+  var bigger              = [1, 2];                 // bigger the square or the circle
+  var areaforthethirdone  = [0.6, 0.35, 0.1];       // area difference between figures. area3 = area2 * areavalues[i]
 
-  var NSTIM               = new Array();  														// number of items to display each trial
-  var STIMVALUES          = new Array();  														// area difference between figures
-  var WHICHISBIGGER       = new Array();															// bigger the square or the circle
-  var TOMULTIPLY          = new Array();   														// to multiply stimval for the third option
+  var NSTIM               = new Array();
+  var STIMVALUES          = new Array();
+  var WHICHISBIGGER       = new Array();
+  var TOMULTIPLY          = new Array();
 
   cont = 0;
   for (var a = 0; a < numberofstimuli.length; a++){
