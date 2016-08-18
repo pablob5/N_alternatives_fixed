@@ -78,15 +78,15 @@ $('.clickresp').click(function(event)									//waits for a click/tap
 	clearTimeout(myVar4);	clearTimeout(myVar5);	clearTimeout(myVar6)
 	clearTimeout(myVar7);	clearTimeout(myVar8)
 
-	if ($(event.target).is('#myCanvasR1')){ sc.response[sc.trial-1] = 1;	   //checks which canvas was clicked
+	if ($(event.target).is('#myCanvasR1') || $(event.target).is('#myCanvas1') ) { sc.response[sc.trial-1] = 1;	   //checks which canvas was clicked
 		$("#myCanvasR1").fadeOut(50);
 		$("#myCanvasR1").fadeIn(100)
 		$("#myCanvasR1").fadeOut(150);}
-	if ($(event.target).is('#myCanvasR2')){ sc.response[sc.trial-1] = 2;
+	if ($(event.target).is('#myCanvasR2') || $(event.target).is('#myCanvas2') ) { sc.response[sc.trial-1] = 2;
 		$("#myCanvasR2").fadeOut(50);
 		$("#myCanvasR2").fadeIn(100)
 		$("#myCanvasR2").fadeOut(150);}
-	if ($(event.target).is('#myCanvasR3')){ sc.response[sc.trial-1] = 3;
+	if ($(event.target).is('#myCanvasR3') || $(event.target).is('#myCanvas3') ) { sc.response[sc.trial-1] = 3;
 		$("#myCanvasR3").fadeOut(50);
 		$("#myCanvasR3").fadeIn(100)
 		$("#myCanvasR3").fadeOut(150);}

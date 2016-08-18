@@ -73,12 +73,11 @@ function create_stim(sc,callback)
 		contextR3.strokeText("",canvasR3.width/2,canvasR3.height/2 + 5);
 		}
 
-		if (screen.width < 401){						  	var AreaSum = 4500}			// responsive area
-		if ((screen.width > 400) && (screen.width < 601)) { var AreaSum = 5500}
-		if ((screen.width > 600) && (screen.width < 901)) { var AreaSum = 6500}
+		if (screen.width < 401){						  	var AreaSum = 7500}			// responsive area
+		if ((screen.width > 400) && (screen.width < 601)) { var AreaSum = 7500}
+		if ((screen.width > 600) && (screen.width < 901)) { var AreaSum = 7500}
 		if ((screen.width > 900) && (screen.width < 1201)){	var AreaSum = 7500}
 		if (screen.width > 1200){							var AreaSum = 7500}
-
 
 		var trial_stimval	 = sc.stimvalues[sc.trial - 1]
 		var stimval_stim3 	 = sc.tomultiply[sc.trial-1]
@@ -86,12 +85,12 @@ function create_stim(sc,callback)
 		DataToSave.stimval 	 = trial_stimval
 		DataToSave.stimval_3 = stimval_stim3
 
-				//----------------------set areas ----------
-		var area1 = AreaSum + stream1.normal(0,1) * 1000; if (area1 < 500){area1 ==1000}// stimuli areas
+		//----------------------set areas ----------
+		var area1 = 0;
+		while((area1 < 2000) || (area1 > 14000)) {area1 = AreaSum + stream1.normal(0,1) * AreaSum/4;}
 		var area2 = area1 * trial_stimval;	
 		var area3 = area2 * stimval_stim3;
 		//----------------------set areas ----------
-
 
 		DataToSave.area1 = area1;
 		DataToSave.area2 = area2;
