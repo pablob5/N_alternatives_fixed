@@ -65,7 +65,7 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 		return}
 
 		var total=0;
-		for(var i in sc.correct) { total += sc.correct[i]; }
+		for(var i in sc.correct) { total += sc.correct[i];}
 		if (total % 10 ==0 && !(total ==0)){
 			Level = Level + 1;
 			$('#Letterhead2').html('Nivel: '+ Level.toString());
