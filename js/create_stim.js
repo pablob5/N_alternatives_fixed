@@ -73,8 +73,8 @@ function create_stim(sc,callback)
 		contextR3.strokeText("",canvasR3.width/2,canvasR3.height/2 + 5);
 		}
 
-		if (screen.width < 401){						  	var AreaSum = 7500}			// responsive area
-		if ((screen.width > 400) && (screen.width < 601)) { var AreaSum = 7500}
+		if (screen.width < 401){						  	var AreaSum = 5500}			// responsive area
+		if ((screen.width > 400) && (screen.width < 601)) { var AreaSum = 6500}
 		if ((screen.width > 600) && (screen.width < 901)) { var AreaSum = 7500}
 		if ((screen.width > 900) && (screen.width < 1201)){	var AreaSum = 7500}
 		if (screen.width > 1200){							var AreaSum = 7500}
@@ -95,14 +95,14 @@ function create_stim(sc,callback)
 		DataToSave.area1 = area1;
 		DataToSave.area2 = area2;
 		DataToSave.area3 = area3;
-		DataToSave.circleorsquare = Math.floor(Math.random()*2);  					  	// the third stimulus, a circle or a square
+		DataToSave.circleorsquare = Math.round(Math.random()) + 1; 					  	// the third stimulus, a circle or a square
 		DataToSave.whichisbigger  = sc.whichisbigger[sc.trial-1];                     	// bigger the square or the circle
 
 		if (sc.whichisbigger[sc.trial-1] ==1){  										// bigger the circle
-			var Radius 	= Math.sqrt(area1 / Math.PI );
+			var Radius 	= Math.sqrt( area1 / Math.PI );
 			var Lado2 	= Math.sqrt(area2)}
 		else {  																		// bigger the square
-			var Radius  = Math.sqrt(area2 / Math.PI);
+			var Radius  = Math.sqrt( area2 / Math.PI);
 			var Lado2 	= Math.sqrt(area1)}
 
 
@@ -111,7 +111,7 @@ function create_stim(sc,callback)
     	context3.clearRect(0, 0, canvas3.width,canvas3.height);
 
 		context1.beginPath();															 // plots the circle, always in context1
-		context1.arc((canvas3.width/2), (canvas3.height/2), Radius, 0, 2 * Math.PI);
+		context1.arc((canvas1.width/2), (canvas1.height/2), Radius, 0, 2 * Math.PI);
 		context1.closePath();
 		context1.fillStyle = "#4CAF50";
 		context1.fill( );
@@ -122,16 +122,16 @@ function create_stim(sc,callback)
 		context2.fillStyle = "#4CAF50";
 		context2.fill( );
 
-    if (DataToSave.circleorsquare ==1){  											// plots the distractor, always in context3 (may be a circle or a square)
+    if (DataToSave.circleorsquare ==1){  												// plots the distractor, always in context3 (may be a circle or a square)
         var Lado3 	= Math.sqrt(area3);
         context3.beginPath();
-		    context3.rect((canvas3.width/2) - Lado3/2, (canvas3.height/2) - Lado3/2, Lado3, Lado3);
-		    context3.closePath();
-		    context3.fillStyle = "#4CAF50";
-		    context3.fill( );}
+		context3.rect((canvas3.width/2) - Lado3/2, (canvas3.height/2) - Lado3/2, Lado3, Lado3);
+		context3.closePath();
+		context3.fillStyle = "#4CAF50";
+		context3.fill( );}
     else
     {
-        var Radius 	= Math.sqrt(area3 / Math.PI );
+        var Radius 	= Math.sqrt( area3 / Math.PI );
         context3.beginPath();
         context3.arc((canvas3.width/2), (canvas3.height/2), Radius, 0, 2 * Math.PI);
         context3.closePath();
@@ -139,9 +139,9 @@ function create_stim(sc,callback)
         context3.fill( );
 		}
 
-		if (sc.whichisbigger[sc.trial-1] ==1){ 										// bigger the circle, correct response in context1
-					DataToSave.posbig = 1}
+		if (sc.whichisbigger[sc.trial-1] ==1){ 											// bigger the circle, correct response in context1
+			DataToSave.posbig = 1}
 		else{
-					DataToSave.posbig = 2}  				                        // bigger the square, correct response in context2
+			DataToSave.posbig = 2}  				  			        				// bigger the square, correct response in context2
 
 }

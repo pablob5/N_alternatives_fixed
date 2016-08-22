@@ -1,5 +1,6 @@
 function introspective_response(DataToSave)
 {
+
 var LIMMIN = Math.ceil(screen.width/2) - Math.ceil($('#line1').width()/2) - 10;
 var LIMMAX = Math.ceil(screen.width/2) + Math.ceil($('#line1').width()/2) - 10;
 var range = LIMMAX - LIMMIN;
@@ -19,8 +20,9 @@ var percent = 0;
 /*------------------mouse ---------*/
 if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 {	
-	$('#scale').hide();
 	if (AutomaticResponse ==1){setTimeout("$('#Dial').click()",1000)}	// to run alone
+
+	$('#scale').hide();
 	$(document).mousemove(function(e){									// slides the cursor
 		$('#scale').show();
 		$('#Dial').show();
@@ -82,18 +84,26 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 /*------------------touchscreen ---------*/
 if (InputMethod == 'Touchscreen')
 {	$('#scale').hide();
+	$('#Dial').hide();
+
 	if (AutomaticResponse ==1){setTimeout("$('#Dial').trigger('touchend')",1000)}	// to run alone
+
 	var Xpos = 0
 	$(document).on('touchstart',function (e){										// gets the touch
 		e.preventDefault();
+
 		Xpos = e.originalEvent.touches[0].pageX;
 		if (e.originalEvent.touches[0].pageX >= LIMMAX){Xpos = LIMMAX};
 		if (e.originalEvent.touches[0].pageX <= LIMMIN){Xpos = LIMMIN};
 		percen = (100 * (Xpos - LIMMIN)/range).toFixed(0) 							// get percentaje 
 		$('#scale').html(percen.toString().concat(' %'))
+		$('#Dial').css({"left": Xpos});
+		$('#scale').show()
+		$('#Dial').show();
 	});
 
 	$(document).on('touchmove',function (ee){										// slides the cursor
+		$('#Dial').show();
 		$('#scale').show();
 		ee.preventDefault();
 		Xpos = ee.originalEvent.touches[0].pageX;

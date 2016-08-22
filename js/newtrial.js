@@ -7,6 +7,7 @@ $(document).unbind("click");
 
 var Name 		= DataToSave.name;
 DataToSave 		= [];						// clear variables to save from previous trialsDataToSave.code = CODE;
+DataToSave.code = CODE; 
 DataToSave.name = Name;
 
 sc.trial 		= sc.trial + 1;             // increment the total trial count

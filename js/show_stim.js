@@ -1,5 +1,8 @@
 function show_stim(sc)
 {
+$('#Dial').hide();
+if (AutomaticResponse ==1){setTimeout("$('#myCanvasR2').click()",2500)}	// to run alone
+
 
 if (screen.width < 401){						  	var R =  110;}	// responsive diameter
 if ((screen.width > 400) && (screen.width < 601)) { var R =  135;}
@@ -7,7 +10,7 @@ if ((screen.width > 600) && (screen.width < 901)) { var R =  150;}
 if ((screen.width > 900) && (screen.width < 1201)){	var R =  170;}
 if (screen.width > 1200){							var R =  170;}
 
-var angle = Math.random()* Math.PI * 2
+var angle = Math.random() * Math.PI * 2
 var stepangle = Math.PI * 2/3 * (Math.round(Math.random()) * 2 -1); //60 deg step, clockwise or anticlockwise for random stimuli location
 
 
@@ -15,13 +18,14 @@ DataToSave.angle = angle;
 DataToSave.stepangle = stepangle;
 
 var Center = screen.width/2 - document.getElementById('myCanvas1').width/2;
-X1 = Math.round(Math.cos(angle) * R + Center);
+
+X1 = Math.round(Math.cos(angle) * R + Center);								// posicion canvas 1 
 Y1 = Math.round(Math.sin(angle) * R);
-X2 = Math.round(Math.cos(angle + stepangle) * R + Center);
+X2 = Math.round(Math.cos(angle + stepangle) * R + Center);					// posicion canvas 2
 Y2 = Math.round(Math.sin(angle + stepangle) * R);
-X3 = Math.round(Math.cos(angle + stepangle + stepangle) * R + Center);
+X3 = Math.round(Math.cos(angle + stepangle + stepangle) * R + Center);		// posicion canvas 3
 Y3 = Math.round(Math.sin(angle + stepangle + stepangle) * R);
-X4 = Center;
+X4 = Center;																// punto de fijacion				
 
 
 DataToSave.nstim = sc.nstim[sc.trial-1];
@@ -68,25 +72,31 @@ var myVar6 = setTimeout("$('#myCanvasR1').fadeIn(200);",T2);
 var myVar7 = setTimeout("$('#myCanvasR2').fadeIn(200);",T2);
 if (sc.nstim[sc.trial-1] ==3){var myVar8 = setTimeout("$('#myCanvasR3').fadeIn(200);",T2)};
 
-if (AutomaticResponse ==1){setTimeout("$('#myCanvasR2').click()",2500)}	// to run alone
-
 $('.clickresp').click(function(event)									//waits for a click/tap
 {
-	DataToSave.reactiontime 	= +new Date() - StartTime - T1;
+	DataToSave.reactiontime	= +new Date() - StartTime - T1;
 
 	clearTimeout(myVar1);	clearTimeout(myVar2);	clearTimeout(myVar3)	// cancels setTimeout if subject clicked faster than T2
 	clearTimeout(myVar4);	clearTimeout(myVar5);	clearTimeout(myVar6)
 	clearTimeout(myVar7);	clearTimeout(myVar8)
 
-	if ($(event.target).is('#myCanvasR1') || $(event.target).is('#myCanvas1') ) { sc.response[sc.trial-1] = 1;	   //checks which canvas was clicked
+	if ($(event.target).is('#myCanvasR1') || $(event.target).is('#myCanvas1') ) { //checks which canvas was clicked 
+		sc.response[sc.trial-1] = 1;	   
+
 		$("#myCanvasR1").fadeOut(50);
 		$("#myCanvasR1").fadeIn(100)
 		$("#myCanvasR1").fadeOut(150);}
-	if ($(event.target).is('#myCanvasR2') || $(event.target).is('#myCanvas2') ) { sc.response[sc.trial-1] = 2;
+	
+	if ($(event.target).is('#myCanvasR2') || $(event.target).is('#myCanvas2') ) { 
+		sc.response[sc.trial-1] = 2;
+		
 		$("#myCanvasR2").fadeOut(50);
 		$("#myCanvasR2").fadeIn(100)
 		$("#myCanvasR2").fadeOut(150);}
-	if ($(event.target).is('#myCanvasR3') || $(event.target).is('#myCanvas3') ) { sc.response[sc.trial-1] = 3;
+	
+	if ($(event.target).is('#myCanvasR3') || $(event.target).is('#myCanvas3') ) { 
+		sc.response[sc.trial-1] = 3;
+		
 		$("#myCanvasR3").fadeOut(50);
 		$("#myCanvasR3").fadeIn(100)
 		$("#myCanvasR3").fadeOut(150);}
