@@ -2,7 +2,7 @@ function store_data(DataToSave){
 $.ajax({
 	type:'POST',
 	url:'./php/processdata.php',
-	data:{Code: 					  DataToSave.code,
+	data:{  Code: 					  DataToSave.code,
 		    Name:  					  DataToSave.name,
  	 	    Trial:  				  DataToSave.trial,
  		    NumberOfItems:		 	  DataToSave.nstim,

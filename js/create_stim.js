@@ -95,7 +95,7 @@ function create_stim(sc,callback)
 		DataToSave.area1 = area1;
 		DataToSave.area2 = area2;
 		DataToSave.area3 = area3;
-		DataToSave.circleorsquare = Math.round(Math.random()*2);  					  	// the third stimulus, a circle or a square
+		DataToSave.circleorsquare = Math.floor(Math.random()*2);  					  	// the third stimulus, a circle or a square
 		DataToSave.whichisbigger  = sc.whichisbigger[sc.trial-1];                     	// bigger the square or the circle
 
 		if (sc.whichisbigger[sc.trial-1] ==1){  										// bigger the circle
