@@ -68,7 +68,8 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 
 		var total=0;
 		for(var i in sc.correct) { total += sc.correct[i];}
-		if (total % 10 ==0 && !(total ==0)){
+		if (total % 10 ==0 && !(total ==0) && !(total == AcumTotal)){
+			AcumTotal = total;
 			Level = Level + 1;
 			$('#Letterhead2').html('Nivel: '+ Level.toString());
 			var sentence = '¡Pasaste al nivel '.concat(Level.toString())
@@ -145,7 +146,8 @@ if (InputMethod == 'Touchscreen')
 
 		var total=0;
 		for(var i in sc.correct) { total += sc.correct[i]; }
-		if (total % 10 ==0 && !(total ==0)){
+		if (total % 10 ==0 && !(total ==0) && !(total == AcumTotal)){
+			AcumTotal = total;
 			Level = Level + 1;
 			$('#Letterhead2').html('Nivel: '+ Level.toString());
 			var sentence = '¡Pasaste al nivel '.concat(Level.toString())

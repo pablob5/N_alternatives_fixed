@@ -1,5 +1,5 @@
 
-var AutomaticResponse 	= 0;		// runs alone, for debugging
+var AutomaticResponse 	= 1;		// runs alone, for debugging
 var Level 		 		= 1;
 var DataToSave 			= [];
 
@@ -13,6 +13,8 @@ sc.nstim        		= [];		// number of items to display
 sc.stimvalues   		= [];		// for the area differences to be stored
 sc.tomultiply   		= [];		// to multiply stimval for Area3
 sc.whichisbigger		= [];		// bigger the square or the circle
+var AcumTotal 			= 0;		// accumulated correct responses
+
 
 var numberofstimuli     = [2, 3];                 // number of items to display each trial
 var bigger              = [1, 2];                 // bigger the square or the circle
