@@ -18,6 +18,12 @@ function trials_structure(){
           WHICHISBIGGER[cont]  = bigger[c]
           TOMULTIPLY[cont]     = areaforthethirdone[e]
           cont = cont + 1
+
+          NSTIM[cont]          = numberofstimuli[a]           // two trials of each type. remove for actual data collection
+          STIMVALUES[cont]     = areavalues[b]
+          WHICHISBIGGER[cont]  = bigger[c]
+          TOMULTIPLY[cont]     = areaforthethirdone[e]
+          cont = cont + 1
         }
       }
     }

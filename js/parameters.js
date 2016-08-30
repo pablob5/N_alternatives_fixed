@@ -15,6 +15,6 @@ sc.tomultiply   		= [];		// to multiply stimval for Area3
 sc.whichisbigger		= [];		// bigger the square or the circle
 
 var numberofstimuli     = [2, 3];                 // number of items to display each trial
-var areavalues          = [.9, .7, .6, .5];       // area difference between figures. area2 = area1 * areavalues[i] 
 var bigger              = [1, 2];                 // bigger the square or the circle
-var areaforthethirdone  = [0.6, 0.35, 0.1];       // area difference between figures. area3 = area2 * areavalues[i]
+var areavalues          = [.95, .9, .8, .7, .6];  // prepilot = [.9, .7, .6, .5] area difference between figures. area2 = area1 * areavalues[i] 
+var areaforthethirdone  = [0.6, 0.4, 0.2, 0.1];   // prepilot = [0.6, 0.35, 0.1] area difference between figures. area3 = area2 * areavalues[i]

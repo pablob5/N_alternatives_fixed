@@ -1,7 +1,8 @@
 function show_stim(sc)
 {
 $('#Dial').hide();
-if (AutomaticResponse ==1){setTimeout("$('#myCanvasR2').click()",2500)}	// to run alone
+if (AutomaticResponse ==1){setTimeout("$('#myCanvas1').click()",1000)}	// to run alone
+
 
 
 if (screen.width < 401){						  	var R =  110;}	// responsive diameter
@@ -39,92 +40,100 @@ $('#myCanvas3').css('top', Y3+'px');
 
 $('#myCanvasDot').css('left',X4+'px');
 
-
-$('#myCanvasR1').css('left',X1+'px');
-$('#myCanvasR1').css('top', Y1+'px');
-$('#myCanvasR2').css('left',X2+'px');
-$('#myCanvasR2').css('top', Y2+'px');
-$('#myCanvasR3').css('left',X3+'px');
-$('#myCanvasR3').css('top', Y3+'px');
-
+ 
 var StartTime = +new Date();											//starts the trial
 $('#SoundButton').show()
+$('#preg').html('¿Cuál es el más grande?');
 
 var T1 = 800;															// stimuli onset
-var T2 = 1800;															// hide stimuli
+var T2 = 2500;															// hide stimuli
 if (sc.trial == 3){$('#preg').html('Comenzamos a ir m&aacute;s r&aacute;pido');}
 if (sc.trial < 4){
 	T2 = 2500;
 	setTimeout("$('#preg').fadeIn(100);",0);
 	}
 
+var myVar1 = setTimeout(function(){
+	DataToSave.response 	   	= 0;
+	DataToSave.correct 	   	   	= -1;
+	DataToSave.reactiontime    	= -1;
+	DataToSave.confidence	 	= -1;
+	DataToSave.reactiontimeconf	= -1;
+
+ 	$("#myCanvas1").fadeOut(500)
+	$("#myCanvas2").fadeOut(500)
+  	$("#myCanvas3").fadeOut(500)
+  	$("#myCanvasDot").fadeOut(500)
+	$('#preg').hide()
+
+	$("#myCanvas1").unbind('click');
+	$("#myCanvas2").unbind('click');
+	$("#myCanvas3").unbind('click');
+
+	$('#preg').html('Demasiado lento, va de nuevo');
+	$('#preg').show()
+	$('#preg').fadeOut(1400)
+	store_data(DataToSave);
+	setTimeout("$('#myCanvas1').hide(0,newtrial(sc))",1000);
+}, T2);
+
+
+
+
 $('#myCanvasDot').fadeIn(100);											//show and hide stimuli
 setTimeout("$('#myCanvas1').show();",T1);
 setTimeout("$('#myCanvas2').show();",T1);
 if (sc.nstim[sc.trial-1] ==3){ setTimeout("$('#myCanvas3').show();",T1);}
 
-var myVar1 = setTimeout("$('#myCanvas1').hide();",T2);
-var myVar2 = setTimeout("$('#myCanvas2').hide();",T2);
-var myVar3 = setTimeout("$('#myCanvas3').hide();",T2);
-var myVar4 = setTimeout("$('#myCanvasDot').hide();",T2);
-var myVar5 = setTimeout("$('#preg').hide();",T2);
-var myVar6 = setTimeout("$('#myCanvasR1').fadeIn(200);",T2);
-var myVar7 = setTimeout("$('#myCanvasR2').fadeIn(200);",T2);
-if (sc.nstim[sc.trial-1] ==3){var myVar8 = setTimeout("$('#myCanvasR3').fadeIn(200);",T2)};
 
 $('.clickresp').click(function(event)									//waits for a click/tap
 {
 	DataToSave.reactiontime	= +new Date() - StartTime - T1;
+	clearTimeout(myVar1);
 
-	clearTimeout(myVar1);	clearTimeout(myVar2);	clearTimeout(myVar3)	// cancels setTimeout if subject clicked faster than T2
-	clearTimeout(myVar4);	clearTimeout(myVar5);	clearTimeout(myVar6)
-	clearTimeout(myVar7);	clearTimeout(myVar8)
-
-	if ($(event.target).is('#myCanvasR1') || $(event.target).is('#myCanvas1') ) { //checks which canvas was clicked 
+	if ($(event.target).is('#myCanvas1') ) { //checks which canvas was clicked 
 		sc.response[sc.trial-1] = 1;	   
-
-		$("#myCanvasR1").fadeOut(50);
-		$("#myCanvasR1").fadeIn(100)
-		$("#myCanvasR1").fadeOut(150);}
+		
+		$("#myCanvas").fadeOut(50);
+		$("#myCanvas").fadeIn(100)
+		$("#myCanvas").fadeOut(150);}
 	
-	if ($(event.target).is('#myCanvasR2') || $(event.target).is('#myCanvas2') ) { 
+	if ($(event.target).is('#myCanvas2') ) { 
 		sc.response[sc.trial-1] = 2;
 		
-		$("#myCanvasR2").fadeOut(50);
-		$("#myCanvasR2").fadeIn(100)
-		$("#myCanvasR2").fadeOut(150);}
+		$("#myCanvas").fadeOut(50);
+		$("#myCanvas").fadeIn(100)
+		$("#myCanvas").fadeOut(150);}
 	
-	if ($(event.target).is('#myCanvasR3') || $(event.target).is('#myCanvas3') ) { 
+	if ($(event.target).is('#myCanvas3') ) { 
 		sc.response[sc.trial-1] = 3;
 		
-		$("#myCanvasR3").fadeOut(50);
-		$("#myCanvasR3").fadeIn(100)
-		$("#myCanvasR3").fadeOut(150);}
+		$("#myCanvas").fadeOut(50);
+		$("#myCanvas").fadeIn(100)
+		$("#myCanvas").fadeOut(150);}
 
+	console.log(sc.response[sc.trial-1])
 	sc.correct[sc.trial-1] = sc.response[sc.trial-1] == DataToSave.posbig;    // checks whether response is correct
 	
+
+	
+
 	DataToSave.response    = sc.response[sc.trial-1];
 	DataToSave.correct 	   = sc.correct[sc.trial-1];
 
  	$("#myCanvas1").fadeOut(500)
 	$("#myCanvas2").fadeOut(500)
   	$("#myCanvas3").fadeOut(500)
- 	$("#myCanvasR1").fadeOut(500)
-  	$("#myCanvasR2").fadeOut(500)
-  	$("#myCanvasR3").fadeOut(500)
   	$("#myCanvasDot").fadeOut(500)
 	$('#preg').fadeOut(500)
 
 	$("#myCanvas1").unbind('click');
 	$("#myCanvas2").unbind('click');
 	$("#myCanvas3").unbind('click');
-	$("#myCanvasR1").unbind('click');
-	$("#myCanvasR2").unbind('click');
-	$("#myCanvasR3").unbind('click');
 	$('#SoundButton').unbind('click');
+	setTimeout("$('#myCanvasR1').hide(0,introspective_response(DataToSave))",500);
 
-	setTimeout("$('#myCanvasR1').hide(0,introspective_response(DataToSave))",200);
+
 });
-
 
 }
