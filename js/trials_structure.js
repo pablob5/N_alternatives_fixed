@@ -11,30 +11,26 @@ function trials_structure(){
   for (var a = 0; a < numberofstimuli.length; a++){
     for (var b = 0; b < areavalues.length; b++){
       for (var c = 0; c < bigger.length; c++){
-        for (var e = 0; e < areaforthethirdone.length; e++){
+        for (var d = 0; d < areaforthethirdone.length; d++){
 
           NSTIM[cont]          = numberofstimuli[a]
           STIMVALUES[cont]     = areavalues[b]
           WHICHISBIGGER[cont]  = bigger[c]
-          TOMULTIPLY[cont]     = areaforthethirdone[e]
+          TOMULTIPLY[cont]     = areaforthethirdone[d]
           cont = cont + 1
 
-          NSTIM[cont]          = numberofstimuli[a]           // two trials of each type. remove for actual data collection
-          STIMVALUES[cont]     = areavalues[b]
-          WHICHISBIGGER[cont]  = bigger[c]
-          TOMULTIPLY[cont]     = areaforthethirdone[e]
-          cont = cont + 1
         }
       }
     }
   }
 
   sc.maxtrials = NSTIM.length;
-  console.log(NSTIM.length)
+  
 
   var indxs = new Array();
   for (var i = 0; i < NSTIM.length;i++) {indxs.push(i);}
 
+  console.log(indxs)
   shuffle(indxs)
   for (var i = 0; i < sc.maxtrials; i++){
     sc.nstim[i]      			= NSTIM[indxs[i]]

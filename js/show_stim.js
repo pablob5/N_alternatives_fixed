@@ -46,19 +46,14 @@ $('#SoundButton').show()
 $('#preg').html('¿Cuál es el más grande?');
 
 var T1 = 800;															// stimuli onset
-var T2 = 2500;															// hide stimuli
+var T2 = 4000;															// hide stimuli
 if (sc.trial == 3){$('#preg').html('Comenzamos a ir m&aacute;s r&aacute;pido');}
 if (sc.trial < 4){
-	T2 = 2500;
+	
 	setTimeout("$('#preg').fadeIn(100);",0);
 	}
 
 var myVar1 = setTimeout(function(){
-	DataToSave.response 	   	= 0;
-	DataToSave.correct 	   	   	= -1;
-	DataToSave.reactiontime    	= -1;
-	DataToSave.confidence	 	= -1;
-	DataToSave.reactiontimeconf	= -1;
 
  	$("#myCanvas1").fadeOut(500)
 	$("#myCanvas2").fadeOut(500)
@@ -73,7 +68,7 @@ var myVar1 = setTimeout(function(){
 	$('#preg').html('Demasiado lento, va de nuevo');
 	$('#preg').show()
 	$('#preg').fadeOut(1400)
-	store_data(DataToSave);
+	sc.trial = sc.trial - 1;
 	setTimeout("$('#myCanvas1').hide(0,newtrial(sc))",1000);
 }, T2);
 

@@ -1,5 +1,5 @@
 
-var AutomaticResponse 	= 1;		// runs alone, for debugging
+var AutomaticResponse 	= 0;		// runs alone, for debugging
 var Level 		 		= 1;
 var DataToSave 			= [];
 
