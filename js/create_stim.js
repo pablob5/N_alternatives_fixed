@@ -45,18 +45,6 @@ function create_stim(sc,callback)
 		contextR3.fillStyle = "#ffaa33";
 		contextR3.fill( );
 
-		contextR2.beginPath();
-		contextR2.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
-		contextR2.closePath();
-		contextR2.fillStyle = "#ffaa33";
-		contextR2.fill( );
-
-		contextR3.beginPath();
-		contextR3.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
-		contextR3.closePath();
-		contextR3.fillStyle = "#ffaa33";
-		contextR3.fill( );
-
 		contextR1.strokeStyle="#ffff66";												// write on response canvas, mostly for debugging
 		contextR1.font="20px Arial";
 		contextR1.textAlign="center"
