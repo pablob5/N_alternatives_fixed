@@ -11,9 +11,9 @@ if ((screen.width > 600) && (screen.width < 901)) { var R =  150;}
 if ((screen.width > 900) && (screen.width < 1201)){	var R =  170;}
 if (screen.width > 1200){							var R =  170;}
 
-var angle = Math.random() * Math.PI * 2
-var stepangle = Math.PI * 2/3 * (Math.round(Math.random()) * 2 -1); //60 deg step, clockwise or anticlockwise for random stimuli location
-
+var angle = Math.random() * Math.PI * 2								// phase from 0 degrees, so canvas appear shifted every trial	
+var stepangle = Math.PI * 2/3 * (Math.round(Math.random()) * 2 -1); // 120 deg step, clockwise or anticlockwise for random stimuli location
+console.log(angle)
 
 DataToSave.angle = angle;
 DataToSave.stepangle = stepangle;
@@ -45,8 +45,6 @@ var StartTime = +new Date();											//starts the trial
 $('#SoundButton').show()
 $('#preg').html('¿Cuál es el más grande?');
 
-var T1 = 800;															// stimuli onset
-var T2 = 4000;															// hide stimuli
 if (sc.trial == 3){$('#preg').html('Comenzamos a ir m&aacute;s r&aacute;pido');}
 if (sc.trial < 4){
 	
@@ -73,23 +71,21 @@ var myVar1 = setTimeout(function(){
 }, T2);
 
 
-
-
-$('#myCanvasDot').fadeIn(100);											//show and hide stimuli
+$('#myCanvasDot').fadeIn(100);											// show and hide stimuli
 setTimeout("$('#myCanvas1').show();",T1);
 setTimeout("$('#myCanvas2').show();",T1);
 if (sc.nstim[sc.trial-1] ==3){ setTimeout("$('#myCanvas3').show();",T1);}
 
 
-$('.clickresp').click(function(event)									//waits for a click/tap
+$('.clickresp').click(function(event)									// waits for a click/tap
 {
 	DataToSave.reactiontime	= +new Date() - StartTime - T1;
 	clearTimeout(myVar1);
 
-	if ($(event.target).is('#myCanvas1') ) { //checks which canvas was clicked 
+	if ($(event.target).is('#myCanvas1') ) { 							// checks which canvas was clicked 
 		sc.response[sc.trial-1] = 1;	   
 		
-		$("#myCanvas").fadeOut(50);
+		$("#myCanvas").fadeOut(50);										// blinks					
 		$("#myCanvas").fadeIn(100)
 		$("#myCanvas").fadeOut(150);}
 	
@@ -107,11 +103,8 @@ $('.clickresp').click(function(event)									//waits for a click/tap
 		$("#myCanvas").fadeIn(100)
 		$("#myCanvas").fadeOut(150);}
 
-	console.log(sc.response[sc.trial-1])
-	sc.correct[sc.trial-1] = sc.response[sc.trial-1] == DataToSave.posbig;    // checks whether response is correct
-	
+	sc.correct[sc.trial-1] = sc.response[sc.trial-1] == DataToSave.posbig;    // checks whether the response is correct
 
-	
 
 	DataToSave.response    = sc.response[sc.trial-1];
 	DataToSave.correct 	   = sc.correct[sc.trial-1];
@@ -126,9 +119,7 @@ $('.clickresp').click(function(event)									//waits for a click/tap
 	$("#myCanvas2").unbind('click');
 	$("#myCanvas3").unbind('click');
 	$('#SoundButton').unbind('click');
-	setTimeout("$('#myCanvasR1').hide(0,introspective_response(DataToSave))",500);
-
-
+	setTimeout("$('#myCanvas1').hide(0,introspective_response(DataToSave))",500);
 });
 
 }

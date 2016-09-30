@@ -7,15 +7,17 @@ var range = LIMMAX - LIMMIN;
 
 
 $('#scale').css('color','#004D00')
-if (sc.trial > 1){$("#scale").animate({ right: '-15px',top: '15px', fontSize: '1em',opacity: '1.0'},10);} // reset the animation from the previous trial
+if (sc.trial > 1)   													// reset the animation from the previous trial
+{
+	$("#scale").animate({ right: '-15px',top: '15px', fontSize: '1em',opacity: '1.0'},10);
+}
 
 $('#line1').show();
-if (sc.trial<4){$('#preg_segu').show();}
+if (sc.trial < 4){$('#preg_segu').show();}
 
 var x = 0;
 var StartTime = +new Date();
 var percent = 0;
-
 
 /*------------------mouse ---------*/
 if (InputMethod == 'Mouse') (InputMethod == 'Pad')
@@ -30,14 +32,13 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 		if (e.pageX >= LIMMAX){x = LIMMAX};
 		if (e.pageX <= LIMMIN){x = LIMMIN};
 
-		percen = (100 * (x - LIMMIN)/range).toFixed(0)						// get percentaje 
+		percen = (100 * (x - LIMMIN)/range).toFixed(0)					// get percentaje 
 		$('#scale').html(percen.toString().concat(' %'))
 		$('#scale').css({"left": x- Math.ceil(screen.width/2)})
-
 		$('#Dial').css({"left": x});})
 
 
-	$(document).click(function(ee){											// gets the click
+	$(document).click(function(ee){										// gets the click
 		$(document).unbind('mousemove');
 		x = ee.pageX;
 		if (ee.pageX >= LIMMAX){x = LIMMAX};
@@ -46,12 +47,10 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 		$('#Dial').css({"left": x})
 		DataToSave.confidence		= (x - LIMMIN)/range;
 		DataToSave.reactiontimeconf	= +new Date() - StartTime;
+																		// animates
+		$("#scale").animate({ right: '15px',top: '-15px', fontSize: '2em',opacity: '0.0'},500);
 
-
-		$("#scale").animate({ right: '15px',top: '-15px',
-            fontSize: '2em',opacity: '0.0'},500);
-
-		setTimeout("$('#Dial').css('background','#ff99ce')",100);
+		setTimeout("$('#Dial').css('background','#ff99ce')",100);		// blinks
 		setTimeout("$('#Dial').css('background','#99004f')",400);
 
 		$('#Dial').fadeOut(500);
@@ -59,7 +58,9 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 		$('#preg_segu').fadeOut(550);
 		$('#scale').fadeOut(500);
 		$(document).unbind('click');
-		store_data(DataToSave);
+		
+		store_data(DataToSave);											// saves whole trial to server
+		
 		if (sc.trial == sc.maxtrials){
 			$('#preg').html('fin del juego, ¡muchas gracias!');
 			$('#preg').css( "fontSize", "30px" );
@@ -67,9 +68,9 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 		return}
 
 		var total=0;
-		for(var i in sc.correct) { total += sc.correct[i];}
-		if (total % 10 ==0 && !(total ==0) && !(total == AcumTotal)){
-			AcumTotal = total;
+		for(var i in sc.correct) { total += sc.correct[i];}				// checks how many correct responses so far
+		if (total % CT ==0 && !(total ==0) && !(total == AcumTotal)){   // every CT correct responses, next level
+			AcumTotal = total;											
 			Level = Level + 1;
 			$('#Letterhead2').html('Nivel: '+ Level.toString());
 			var sentence = '¡Pasaste al nivel '.concat(Level.toString())
@@ -117,7 +118,7 @@ if (InputMethod == 'Touchscreen')
 		$('#Dial').css({"left": Xpos});
 	})
 
-	$(document).on('touchend',function (eee){											// end of touch, get response
+	$(document).on('touchend',function (eee){										// end of touch, get response
 		eee.preventDefault();
 		DataToSave.confidence		= (Xpos - LIMMIN)/range;
 		DataToSave.reactiontimeconf	= +new Date() - StartTime;
@@ -137,7 +138,9 @@ if (InputMethod == 'Touchscreen')
 		$('#preg_segu').fadeOut(550);
 		$('#scale').fadeOut(500);
 		$(document).unbind('click');
-		store_data(DataToSave);
+
+		store_data(DataToSave);											// saves whole trial to server
+		
 		if (sc.trial == sc.maxtrials){
 			$('#preg').html('fin del juego, ¡muchas gracias!');
 			$('#preg').css( "fontSize", "30px" );
@@ -145,9 +148,9 @@ if (InputMethod == 'Touchscreen')
 		return}
 
 		var total=0;
-		for(var i in sc.correct) { total += sc.correct[i]; }
-		if (total % 10 ==0 && !(total ==0) && !(total == AcumTotal)){
-			AcumTotal = total;
+		for(var i in sc.correct) { total += sc.correct[i];}				// checks how many correct responses so far
+		if (total % CT ==0 && !(total ==0) && !(total == AcumTotal)){   // every CT correct responses, next level
+			AcumTotal = total;											
 			Level = Level + 1;
 			$('#Letterhead2').html('Nivel: '+ Level.toString());
 			var sentence = '¡Pasaste al nivel '.concat(Level.toString())

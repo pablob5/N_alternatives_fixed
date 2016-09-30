@@ -1,6 +1,7 @@
 function create_stim(sc,callback)
 {
-	if (sc.trial == 1){
+	if (sc.trial == 1)
+	{
 		stream1 = new Random();															// http://www.simjs.com/random.html#why-not-math-random
 
 		canvas1 = document.getElementById('myCanvas1');
@@ -8,7 +9,7 @@ function create_stim(sc,callback)
 		canvas3 = document.getElementById('myCanvas3');
 		canvas4 = document.getElementById('myCanvasDot');
 
-		context1 = canvas1.getContext('2d');											// stimuli canvas, global variables
+		context1 = canvas1.getContext('2d');											// stimuli canvas are global variables
 		context2 = canvas2.getContext('2d');
 		context3 = canvas3.getContext('2d');
 		context4 = canvas4.getContext('2d');
@@ -18,50 +19,9 @@ function create_stim(sc,callback)
 		context4.closePath();
 		context4.fillStyle = "#FF9600";
 		context4.fill( );
+	}
 
-		canvasR1 = document.getElementById('myCanvasR1');
-		canvasR2 = document.getElementById('myCanvasR2');
-		canvasR3 = document.getElementById('myCanvasR3');
-
-		contextR1 = canvasR1.getContext('2d');											// response canvas, global variables
-		contextR2 = canvasR2.getContext('2d');
-		contextR3 = canvasR3.getContext('2d');
-
-		contextR1.beginPath();				 											// response dots
-		contextR1.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
-		contextR1.closePath();
-		contextR1.fillStyle = "#ffaa33";
-		contextR1.fill( );
-
-		contextR2.beginPath();
-		contextR2.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
-		contextR2.closePath();
-		contextR2.fillStyle = "#ffaa33";
-		contextR2.fill( );
-
-		contextR3.beginPath();
-		contextR3.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
-		contextR3.closePath();
-		contextR3.fillStyle = "#ffaa33";
-		contextR3.fill( );
-
-		contextR1.strokeStyle="#ffff66";												// write on response canvas, mostly for debugging
-		contextR1.font="20px Arial";
-		contextR1.textAlign="center"
-		contextR1.strokeText("",canvasR1.width/2,canvasR1.height/2 + 5);
-
-		contextR2.strokeStyle="#ffff66";
-		contextR2.font="20px Arial";
-		contextR2.textAlign="center"
-		contextR2.strokeText("",canvasR2.width/2,canvasR2.height/2 + 5);
-
-		contextR3.strokeStyle="#ffff66";
-		contextR3.font="20px Arial";
-		contextR3.textAlign="center"
-		contextR3.strokeText("",canvasR3.width/2,canvasR3.height/2 + 5);
-		}
-
-		if (screen.width < 401){						  	var AreaSum = 5500}			// responsive area
+		if (screen.width < 401){						  	var AreaSum = 5500}			// responsive areas
 		if ((screen.width > 400) && (screen.width < 601)) { var AreaSum = 6500}
 		if ((screen.width > 600) && (screen.width < 901)) { var AreaSum = 7500}
 		if ((screen.width > 900) && (screen.width < 1201)){	var AreaSum = 7500}
@@ -110,8 +70,8 @@ function create_stim(sc,callback)
 		context2.fillStyle = "#4CAF50";
 		context2.fill( );
 
-    if (DataToSave.circleorsquare ==1){  												// plots the distractor, always in context3 (may be a circle or a square)
-        var Lado3 	= Math.sqrt(area3);
+    if (DataToSave.circleorsquare ==1){  												// plots the distractor, always in context3
+    	var Lado3 	= Math.sqrt(area3); 												// (may be a circle or a square)
         context3.beginPath();
 		context3.rect((canvas3.width/2) - Lado3/2, (canvas3.height/2) - Lado3/2, Lado3, Lado3);
 		context3.closePath();
