@@ -15,17 +15,17 @@ function create_stim(sc,callback)
 		context4 = canvas4.getContext('2d');
 
 	 	context4.beginPath();															// fixation dot canvas
-		context4.arc((canvas1.width/2), (canvas1.height/2), 5, 0, 2 * Math.PI);
+		context4.arc((canvas4.width/2), (canvas4.height/2), 5, 0, 2 * Math.PI);
 		context4.closePath();
 		context4.fillStyle = "#FF9600";
 		context4.fill( );
 	}
 
-		if (screen.width < 401){						  	var AreaSum = 5500}			// responsive areas
-		if ((screen.width > 400) && (screen.width < 601)) { var AreaSum = 6500}
-		if ((screen.width > 600) && (screen.width < 901)) { var AreaSum = 7500}
-		if ((screen.width > 900) && (screen.width < 1201)){	var AreaSum = 7500}
-		if (screen.width > 1200){							var AreaSum = 7500}
+		if (screen.width  < 400){						  	 var AreaSum = 5500}		// responsive areas
+		if ((screen.width >= 400) && (screen.width < 600)) { var AreaSum = 6500}
+		if ((screen.width >= 600) && (screen.width < 900)) { var AreaSum = 7500}
+		if ((screen.width >= 900) && (screen.width < 1200)){ var AreaSum = 7500}
+		if (screen.width  >= 1200){							 var AreaSum = 7500}
 
 		var trial_stimval	 = sc.stimvalues[sc.trial - 1]
 		var stimval_stim3 	 = sc.tomultiply[sc.trial-1]

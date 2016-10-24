@@ -5,15 +5,14 @@ if (AutomaticResponse ==1){setTimeout("$('#myCanvas1').click()",1000)}	// to run
 
 
 
-if (screen.width < 401){						  	var R =  110;}	// responsive diameter
-if ((screen.width > 400) && (screen.width < 601)) { var R =  135;}
-if ((screen.width > 600) && (screen.width < 901)) { var R =  150;}
-if ((screen.width > 900) && (screen.width < 1201)){	var R =  170;}
-if (screen.width > 1200){							var R =  170;}
+if (screen.width  < 400){						     var R =  110;}	// responsive diameter
+if ((screen.width >= 400) && (screen.width < 600)) { var R =  135;}
+if ((screen.width >= 600) && (screen.width < 900)) { var R =  150;}
+if ((screen.width >= 900) && (screen.width < 1200)){ var R =  170;}
+if (screen.width  >= 1200){							 var R =  170;}
 
-var angle = Math.random() * Math.PI * 2								// phase from 0 degrees, so canvas appear shifted every trial	
+var angle = Math.random() * Math.PI * 2;							// phase from 0 degrees, so canvas appear shifted every trial	
 var stepangle = Math.PI * 2/3 * (Math.round(Math.random()) * 2 -1); // 120 deg step, clockwise or anticlockwise for random stimuli location
-console.log(angle)
 
 DataToSave.angle = angle;
 DataToSave.stepangle = stepangle;
@@ -66,7 +65,7 @@ var myVar1 = setTimeout(function(){
 	$('#preg').html('Demasiado lento, va de nuevo');
 	$('#preg').show()
 	$('#preg').fadeOut(1400)
-	sc.trial = sc.trial - 1;
+	sc.trial = sc.trial - 1;											// will repeat trial
 	setTimeout("$('#myCanvas1').hide(0,newtrial(sc))",1000);
 }, T2);
 
@@ -80,28 +79,28 @@ if (sc.nstim[sc.trial-1] ==3){ setTimeout("$('#myCanvas3').show();",T1);}
 $('.clickresp').click(function(event)									// waits for a click/tap
 {
 	DataToSave.reactiontime	= +new Date() - StartTime - T1;
-	clearTimeout(myVar1);
+	clearTimeout(myVar1);												// cancels automatic ending of trial
 
 	if ($(event.target).is('#myCanvas1') ) { 							// checks which canvas was clicked 
 		sc.response[sc.trial-1] = 1;	   
 		
-		$("#myCanvas").fadeOut(50);										// blinks					
-		$("#myCanvas").fadeIn(100)
-		$("#myCanvas").fadeOut(150);}
+		$("#myCanvas1").fadeOut(50);										// blinks					
+		$("#myCanvas1").fadeIn(100)
+		$("#myCanvas1").fadeOut(150);}
 	
 	if ($(event.target).is('#myCanvas2') ) { 
 		sc.response[sc.trial-1] = 2;
 		
-		$("#myCanvas").fadeOut(50);
-		$("#myCanvas").fadeIn(100)
-		$("#myCanvas").fadeOut(150);}
+		$("#myCanvas2").fadeOut(50);
+		$("#myCanvas2").fadeIn(100)
+		$("#myCanvas2").fadeOut(150);}
 	
 	if ($(event.target).is('#myCanvas3') ) { 
 		sc.response[sc.trial-1] = 3;
 		
-		$("#myCanvas").fadeOut(50);
-		$("#myCanvas").fadeIn(100)
-		$("#myCanvas").fadeOut(150);}
+		$("#myCanvas3").fadeOut(50);
+		$("#myCanvas3").fadeIn(100)
+		$("#myCanvas3").fadeOut(150);}
 
 	sc.correct[sc.trial-1] = sc.response[sc.trial-1] == DataToSave.posbig;    // checks whether the response is correct
 

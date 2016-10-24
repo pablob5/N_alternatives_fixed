@@ -6,7 +6,7 @@ $('#Dial').hide();
 $(document).unbind("click");
 
 var Name 		= DataToSave.name;
-DataToSave 		= [];						// clear variables to save from previous trialsDataToSave.code = CODE;
+DataToSave 		= [];						// clear variables to save from previous trials
 DataToSave.code = CODE; 
 DataToSave.name = Name;
 
