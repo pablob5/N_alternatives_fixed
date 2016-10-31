@@ -25,12 +25,11 @@ function trials_structure(){
   }
 
   sc.maxtrials = NSTIM.length;
-  
+  console.log(sc.maxtrials)
 
   var indxs = new Array();
   for (var i = 0; i < NSTIM.length;i++) {indxs.push(i);}
 
-  console.log(indxs)
   shuffle(indxs)
   for (var i = 0; i < sc.maxtrials; i++){
     sc.nstim[i]      			= NSTIM[indxs[i]]
