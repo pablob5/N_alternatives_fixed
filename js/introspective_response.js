@@ -72,10 +72,10 @@ if (InputMethod == 'Mouse') (InputMethod == 'Pad')
 		if (total % CT ==0 && !(total ==0) && !(total == AcumTotal)){   // every CT correct responses, next level
 			AcumTotal = total;											
 			Level = Level + 1;
-			$('#Letterhead2').html('Nivel: '+ Level.toString());
-			var sentence = '¡Pasaste al nivel '.concat(Level.toString())
-			$("#preg").html(sentence.concat('!'));
-			$("#preg").fadeIn(300);
+		//	$('#Letterhead2').html('Nivel: '+ Level.toString());
+		//	var sentence = '¡Pasaste al nivel '.concat(Level.toString())
+		//	$("#preg").html(sentence.concat('!'));
+		//	$("#preg").fadeIn(300);
 			setTimeout("$('#preg').fadeOut(200);$('div.linesConf').hide(0,newtrial(sc))",2500)}
 		else{
 			setTimeout("$('div.linesConf').hide(0,newtrial(sc))",1500)}
@@ -152,10 +152,10 @@ if (InputMethod == 'Touchscreen')
 		if (total % CT ==0 && !(total ==0) && !(total == AcumTotal)){   // every CT correct responses, next level
 			AcumTotal = total;											
 			Level = Level + 1;
-			$('#Letterhead2').html('Nivel: '+ Level.toString());
-			var sentence = '¡Pasaste al nivel '.concat(Level.toString())
-			$("#preg").html(sentence.concat('!'));
-			$("#preg").fadeIn(300);
+		//	$('#Letterhead2').html('Nivel: '+ Level.toString());
+		//	var sentence = '¡Pasaste al nivel '.concat(Level.toString())
+		//	$("#preg").html(sentence.concat('!'));
+		//	$("#preg").fadeIn(300);
 			setTimeout("$('#preg').fadeOut(200);$('div.linesConf').hide(0,newtrial(sc))",2500)}
 		else{
 			setTimeout("$('div.linesConf').hide(0,newtrial(sc))",1500)}

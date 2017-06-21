@@ -114,10 +114,7 @@ $('.clickresp').click(function(event)									// waits for a click/tap
   	$("#myCanvasDot").fadeOut(500)
 	$('#preg').fadeOut(500)
 
-	$("#myCanvas1").unbind('click');
-	$("#myCanvas2").unbind('click');
-	$("#myCanvas3").unbind('click');
-	$('#SoundButton').unbind('click');
+	$(".clickresp").unbind('click');
 	setTimeout("$('#myCanvas1').hide(0,introspective_response(DataToSave))",500);
 });
 

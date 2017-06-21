@@ -21,5 +21,5 @@ var CT 					= 10; 		// number of correct trials to increase level
 
 var numberofstimuli     = [2, 3];                 // number of items to display each trial
 var bigger              = [1, 2];                 // bigger the square or the circle
-var areavalues          = [0.7, 0.8, 0.9, 0.95];  // prepilot = [.9, .7, .6, .5] area difference between figures. area2 = area1 * areavalues[i] 
-var areaforthethirdone  = [0.1, 0.2, 0.4, 0.6];   // prepilot = [0.6, 0.35, 0.1] area difference between figures. area3 = area2 * areavalues[i]
+var areavalues          = [0.7, 0.8, 0.85, 0.9, 0.95];  // prepilot = [.9, .7, .6, .5] area difference between figures. area2 = area1 * areavalues[i] 
+var areaforthethirdone  = [0.1, 0.2, 0.3, 0.4, 0.5 , 0.6];   // prepilot = [0.6, 0.35, 0.1] area difference between figures. area3 = area2 * areavalues[i]

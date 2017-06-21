@@ -100,6 +100,7 @@ background: "rgb(255,150,0)"
 }
 
 .clickresp{display:none}
+.fixdot{display:none}
 
 #submit_button{
     opacity: 0.5;
@@ -262,7 +263,8 @@ background: "rgb(255,150,0)"
 	#marks{margin-top: 170px;}
 	#bar1{margin-top: 220px;}
 	#bar2{margin-top: 216px;}
-	.clickresp{margin-top: 75px;}
+  .clickresp{margin-top: 75px;}
+  .fixdot{margin-top: 75px;}
 
 }
 
@@ -320,7 +322,8 @@ background: "rgb(255,150,0)"
 	#marks{margin-top: 190px;}
 	#bar1{margin-top: 250px;}
 	#bar2{margin-top: 246px;}
-	.clickresp{margin-top: 85px;}
+  .clickresp{margin-top: 85px;}
+  .fixdot{margin-top: 85px;}
 
 }
 
@@ -364,7 +367,8 @@ background: "rgb(255,150,0)"
 	#marks{margin-top: 190px;}
 	#bar1{margin-top: 250px;}
 	#bar2{margin-top: 246px;}
-	.clickresp{margin-top: 100px;}
+  .clickresp{margin-top: 100px;}
+  .fixdot{margin-top: 100px;}
 
 	}
 
@@ -393,6 +397,7 @@ background: "rgb(255,150,0)"
 	#marks{margin-top: 195px;}
 	#bar1{margin-top: 250px;}
 	#bar2{margin-top: 246px;}
-	.clickresp{margin-top: 100px;}
+  .clickresp{margin-top: 100px;}
+  .fixdot{margin-top: 100px;}
 
 	}
