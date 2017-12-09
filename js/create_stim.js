@@ -17,9 +17,63 @@ function create_stim(sc,callback)
 	 	context4.beginPath();															// fixation dot canvas
 		context4.arc((canvas4.width/2), (canvas4.height/2), 5, 0, 2 * Math.PI);
 		context4.closePath();
-		context4.fillStyle = "#FF9600";
+		context4.fillStyle = "#000000";
 		context4.fill( );
-	}
+	
+		canvasR1 = document.getElementById('myCanvasR1');
+		canvasR2 = document.getElementById('myCanvasR2');
+		canvasR3 = document.getElementById('myCanvasR3');
+
+		contextR1 = canvasR1.getContext('2d');											// response canvas, global variables
+		contextR2 = canvasR2.getContext('2d');
+		contextR3 = canvasR3.getContext('2d');
+
+		contextR1.beginPath();				 											// response dots
+		contextR1.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
+		contextR1.closePath();
+		contextR1.fillStyle = "#ffaa33";
+		contextR1.fill( );
+
+		contextR2.beginPath();
+		contextR2.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
+		contextR2.closePath();
+		contextR2.fillStyle = "#ffaa33";
+		contextR2.fill( );
+
+		contextR3.beginPath();
+		contextR3.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
+		contextR3.closePath();
+		contextR3.fillStyle = "#ffaa33";
+		contextR3.fill( );
+
+		contextR2.beginPath();
+		contextR2.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
+		contextR2.closePath();
+		contextR2.fillStyle = "#ffaa33";
+		contextR2.fill( );
+
+		contextR3.beginPath();
+		contextR3.arc((canvas1.width/2), (canvas1.height/2), 10, 0, 2 * Math.PI);
+		contextR3.closePath();
+		contextR3.fillStyle = "#ffaa33";
+		contextR3.fill( );
+
+		contextR1.strokeStyle="#ffff66";												// write on response canvas, mostly for debugging
+		contextR1.font="20px Arial";
+		contextR1.textAlign="center"
+		contextR1.strokeText("",canvasR1.width/2,canvasR1.height/2 + 5);
+
+		contextR2.strokeStyle="#ffff66";
+		contextR2.font="20px Arial";
+		contextR2.textAlign="center"
+		contextR2.strokeText("",canvasR2.width/2,canvasR2.height/2 + 5);
+
+		contextR3.strokeStyle="#ffff66";
+		contextR3.font="20px Arial";
+		contextR3.textAlign="center"
+		contextR3.strokeText("",canvasR3.width/2,canvasR3.height/2 + 5);
+		}
+
 
 		if (screen.width  < 400){						  	 var AreaSum = 5500}		// responsive areas
 		if ((screen.width >= 400) && (screen.width < 600)) { var AreaSum = 6500}

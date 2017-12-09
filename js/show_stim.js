@@ -1,7 +1,7 @@
 function show_stim(sc)
 {
 $('#Dial').hide();
-if (AutomaticResponse ==1){setTimeout("$('#myCanvas1').click()",1000)}	// to run alone
+if (AutomaticResponse ==1){setTimeout("$('#myCanvas1').click()",2000)}	// to run alone
 
 
 
@@ -39,34 +39,34 @@ $('#myCanvas3').css('top', Y3+'px');
 
 $('#myCanvasDot').css('left',X4+'px');
 
+
+$('#myCanvasR1').css('left',X1+'px');
+$('#myCanvasR1').css('top', Y1+'px');
+$('#myCanvasR2').css('left',X2+'px');
+$('#myCanvasR2').css('top', Y2+'px');
+$('#myCanvasR3').css('left',X3+'px');
+$('#myCanvasR3').css('top', Y3+'px');
+
  
 var StartTime = +new Date();											//starts the trial
 $('#SoundButton').show()
 $('#preg').html('¿Cuál es el más grande?');
 
-if (sc.trial == 3){$('#preg').html('Comenzamos a ir m&aacute;s r&aacute;pido');}
-if (sc.trial < 4){
-	
+
+if (sc.trial < 3){
 	setTimeout("$('#preg').fadeIn(100);",0);
 	}
 
 var myVar1 = setTimeout(function(){
 
- 	$("#myCanvas1").fadeOut(500)
-	$("#myCanvas2").fadeOut(500)
-  	$("#myCanvas3").fadeOut(500)
-  	$("#myCanvasDot").fadeOut(500)
-	$('#preg').hide()
+ 	$("#myCanvas1").hide()
+	$("#myCanvas2").hide()
+  	$("#myCanvas3").hide()
+  	$("#myCanvasDot").hide()
+ 	$("#myCanvasR1").show()
+	$("#myCanvasR2").show()
+  	if (sc.nstim[sc.trial-1] ==3){$("#myCanvasR3").show()}
 
-	$("#myCanvas1").unbind('click');
-	$("#myCanvas2").unbind('click');
-	$("#myCanvas3").unbind('click');
-
-	$('#preg').html('Demasiado lento, va de nuevo');
-	$('#preg').show()
-	$('#preg').fadeOut(1400)
-	sc.trial = sc.trial - 1;											// will repeat trial
-	setTimeout("$('#myCanvas1').hide(0,newtrial(sc))",1000);
 }, T2);
 
 
@@ -83,7 +83,8 @@ $('.clickresp').click(function(event)									// waits for a click/tap
 
 	if ($(event.target).is('#myCanvas1') ) { 							// checks which canvas was clicked 
 		sc.response[sc.trial-1] = 1;	   
-		
+
+		$("#myCanvas1").unbind('click');
 		$("#myCanvas1").fadeOut(50);										// blinks					
 		$("#myCanvas1").fadeIn(100)
 		$("#myCanvas1").fadeOut(150);}
@@ -91,6 +92,7 @@ $('.clickresp').click(function(event)									// waits for a click/tap
 	if ($(event.target).is('#myCanvas2') ) { 
 		sc.response[sc.trial-1] = 2;
 		
+		$("#myCanvas2").unbind('click');
 		$("#myCanvas2").fadeOut(50);
 		$("#myCanvas2").fadeIn(100)
 		$("#myCanvas2").fadeOut(150);}
@@ -98,9 +100,34 @@ $('.clickresp').click(function(event)									// waits for a click/tap
 	if ($(event.target).is('#myCanvas3') ) { 
 		sc.response[sc.trial-1] = 3;
 		
+		$("#myCanvas3").unbind('click');
 		$("#myCanvas3").fadeOut(50);
 		$("#myCanvas3").fadeIn(100)
 		$("#myCanvas3").fadeOut(150);}
+
+	if ($(event.target).is('#myCanvasR1') ) { 
+		sc.response[sc.trial-1] = 1;	   
+		
+		$("#myCanvasR1").unbind('click');
+		$("#myCanvasR1").fadeOut(50);							
+		$("#myCanvasR1").fadeIn(100)
+		$("#myCanvasR1").fadeOut(150);}
+	
+	if ($(event.target).is('#myCanvasR2') ) { 
+		sc.response[sc.trial-1] = 2;
+		
+		$("#myCanvasR2").unbind('click');
+		$("#myCanvasR2").fadeOut(50);
+		$("#myCanvasR2").fadeIn(100)
+		$("#myCanvasR2").fadeOut(150);}
+	
+	if ($(event.target).is('#myCanvasR3') ) { 
+		sc.response[sc.trial-1] = 3;
+		
+		$("#myCanvasR3").unbind('click');
+		$("#myCanvasR3").fadeOut(50);
+		$("#myCanvasR3").fadeIn(100)
+		$("#myCanvasR3").fadeOut(150);}
 
 	sc.correct[sc.trial-1] = sc.response[sc.trial-1] == DataToSave.posbig;    // checks whether the response is correct
 
@@ -111,6 +138,9 @@ $('.clickresp').click(function(event)									// waits for a click/tap
  	$("#myCanvas1").fadeOut(500)
 	$("#myCanvas2").fadeOut(500)
   	$("#myCanvas3").fadeOut(500)
+ 	$("#myCanvasR1").fadeOut(500)
+	$("#myCanvasR2").fadeOut(500)
+  	$("#myCanvasR3").fadeOut(500)
   	$("#myCanvasDot").fadeOut(500)
 	$('#preg').fadeOut(500)
 
